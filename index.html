@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset='UTF-8'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+    <title>InfoLopi IPTV - Premium Live TV</title>
+    
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: #060709;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding-top: 56px;
+        }
+        .infolopi-header {
+            position: fixed; top: 0; left: 0; right: 0; height: 56px;
+            background: rgba(15, 18, 27, 0.95); backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; z-index: 1000; border-bottom: 1px solid #1e2330;
+        }
+        .infolopi-logo { font-size: 22px; font-weight: 900; color: #00ffcc; letter-spacing: 1.5px; text-transform: uppercase; }
+        .infolopi-logo span { color: #ffffff; }
+        .live-pulse { width: 10px; height: 10px; background: #ff0055; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #ff0055; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
+        .app-container { max-width: 1000px; margin: 0 auto; padding: 15px; }
+        .main-player-box { position: sticky; top: 56px; z-index: 999; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.8); margin-bottom: 25px; border: 1px solid #1c2130; }
+        .cat-title { font-size: 16px; font-weight: 700; color: #8f9cae; text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 12px 5px; display: flex; align-items: center; gap: 8px; }
+        .cat-title::before { content: ''; display: block; width: 4px; height: 16px; background: #00ffcc; border-radius: 2px; }
+        .grid-channels { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 12px; }
+        .card-channel { background: #0f121b; border: 1px solid #1e2330; border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; transition: all 0.2s ease-in-out; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .card-channel:hover, .card-channel:active { border-color: #00ffcc; background: #151a26; transform: scale(1.03); }
+        .logo-wrap { width: 64px; height: 64px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 8px; margin-bottom: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #252b3d; }
+        .logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+        .card-channel p { font-size: 12px; font-weight: 600; color: #d1d5db; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+        .plyr--video { --plyr-color-main: #00ffcc; --plyr-video-background: #000; }
+        .app-footer { text-align: center; padding: 30px 10px; color: #4b5563; font-size: 11px; border-top: 1px solid #121622; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class='infolopi-header'>
+        <div class='infolopi-logo'>Info<span>Lopi</span></div>
+        <div style='display: flex; align-items: center; gap: 8px;'>
+            <span style='font-size: 12px; color: #ff0055; font-weight: bold;'>LIVE</span>
+            <span class='live-pulse'></span>
+        </div>
+    </div>
+
+    <div class='app-container'>
+        <div class='main-player-box'>
+            <video id="player" controls playsinline>
+                <source src="http://103.149.141.22:8080/hls/sangeet.m3u8" type="application/x-mpegURL" />
+            </video>
+        </div>
+
+        <div class='cat-title'>বাংলাদেশের চ্যানেল (BD Channels)</div>
+        <div class='grid-channels'>
+            <div class='card-channel' onclick="playM3u8('http://103.149.141.22:8080/hls/sangeet.m3u8')">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/b/b3/Sangeet_Bangla_logo.png' alt='Sangeet BD'/></div>
+                <p>Sangeet BD</p>
+            </div>
+            <div class='card-channel' onclick="playM3u8('http://150.107.213.106:8080/hls/anandatv.m3u8')">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/8/82/Ananda_TV_logo.png' alt='Ananda TV'/></div>
+                <p>Ananda TV</p>
+            </div>
+            <div class='card-channel' onclick="playM3u8('http://103.199.155.130:8080/hls/bv.m3u8')">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Banglavision_logo.svg/1200px-Banglavision_logo.svg.png' alt='Banglavision'/></div>
+                <p>Banglavision</p>
+            </div>
+        </div>
+
+        <div class='cat-title'>লাইভ স্পোর্টস (Sports Live)</div>
+        <div class='grid-channels'>
+            <div class='card-channel' onclick="playM3u8('https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8')">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/2/23/T_Sports_logo.png' alt='Sports'/></div>
+                <p>Sports Max</p>
+            </div>
+            <div class='card-channel' onclick="playM3u8('https://rbmn-live.akamaized.net/hls/live/590964/BoB/master.m3u8')">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Red_Bull_TV_logo.svg/1200px-Red_Bull_TV_logo.svg.png' alt='Redbull'/></div>
+                <p>RedBull TV</p>
+            </div>
+        </div>
+    </div>
+
+    <div class='app-footer'>
+        <p>&#169; 2026 InfoLopi IPTV. All Public Free Streams Powered by GitHub.</p>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        var videoElement = document.getElementById('player');
+        var hlsEngine = null;
+        var plyrInstance = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var defaultSrc = videoElement.getElementsByTagName('source')[0].src;
+            initializePlayer(defaultSrc);
+        });
+
+        function initializePlayer(sourceUrl) {
+            if (Hls.isSupported()) {
+                if (hlsEngine) { hlsEngine.destroy(); }
+                hlsEngine = new Hls({ xhrSetup: function (xhr, url) { xhr.withCredentials = false; } });
+                hlsEngine.loadSource(sourceUrl);
+                hlsEngine.attachMedia(videoElement);
+                if (!plyrInstance) { plyrInstance = new Plyr(videoElement); }
+            } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+                videoElement.src = sourceUrl;
+                if (!plyrInstance) { plyrInstance = new Plyr(videoElement); }
+            }
+        }
+
+        function playM3u8(channelUrl) {
+            if (Hls.isSupported() && hlsEngine) {
+                hlsEngine.loadSource(channelUrl);
+                videoElement.play().catch(function(e){ console.log(e); });
+            } else {
+                videoElement.src = channelUrl;
+                videoElement.play();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
