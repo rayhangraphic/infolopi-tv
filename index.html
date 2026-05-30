@@ -3,163 +3,230 @@
 <head>
     <meta charset='UTF-8'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
-    <title>InfoLopi IPTV - High-Speed Live</title>
+    <title>InfoLopi IPTV - Ultimate Live Streaming</title>
     
-    <!-- Premium Video Player System -->
+    <!-- High-Performance Video Player Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.3.5/dist/controls.css" />
     <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.3.5/dist/shaka-player.ui.js"></script>
     
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { background-color: #090d16; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding-top: 56px; }
+        body { background-color: #070a12; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding-bottom: 40px; }
         
-        /* Premium Navigation Bar */
-        .infolopi-header { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: #121824; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 1000; border-bottom: 2px solid #00ffcc; }
-        .infolopi-logo { font-size: 22px; font-weight: 900; color: #00ffcc; letter-spacing: 1px; text-transform: uppercase; }
-        .infolopi-logo span { color: #ffffff; }
-        .live-pulse { width: 10px; height: 10px; background: #ff0055; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #ff0055; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
+        /* Premium Big Branding Header */
+        .brand-container {
+            text-align: center;
+            padding: 30px 10px 15px 10px;
+            background: linear-gradient(180deg, #111726 0%, #070a12 100%);
+            border-bottom: 1px solid #1a2236;
+        }
+        .main-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: #00ffcc;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            margin-bottom: 5px;
+        }
+        .main-title span { color: #ffffff; text-shadow: none; }
+        .sub-title { font-size: 12px; color: #64748b; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; }
+
+        .app-container { max-width: 950px; margin: 0 auto; padding: 15px; }
         
-        .app-container { max-width: 900px; margin: 0 auto; padding: 15px; }
+        /* 16:9 Smart Video Player Screen */
+        .main-player-box { background: #000; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.8); margin-bottom: 30px; border: 1px solid #1e293b; width: 100%; }
+        video { width: 100%; height: 100%; max-height: 520px; background: #000; display: block; }
+        .shaka-video-container { border-radius: 16px; overflow: hidden; }
         
-        /* 16:9 Smart Video Container */
-        .main-player-box { position: sticky; top: 56px; z-index: 999; background: #000; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.7); margin-bottom: 25px; border: 1px solid #1e293b; width: 100%; }
-        video { width: 100%; height: 100%; max-height: 500px; background: #000; }
+        /* Premium Category Horizontal Menu */
+        .category-menu {
+            display: flex; gap: 10px; overflow-x: auto; padding: 5px 5px 15px 5px;
+            margin-bottom: 20px; scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .category-menu::-webkit-scrollbar { display: none; }
         
-        /* Custom Styling for Video Controls */
-        .shaka-video-container { border-radius: 14px; overflow: hidden; }
+        .cat-btn {
+            background: #111726; border: 1px solid #24314f; border-radius: 30px;
+            color: #94a3b8; padding: 10px 22px; font-size: 14px; font-weight: 700;
+            cursor: pointer; white-space: nowrap; transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .cat-btn:hover, .cat-btn.active {
+            background: #00ffcc; border-color: #00ffcc; color: #070a12;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3); transform: translateY(-2px);
+        }
         
-        .cat-title { font-size: 16px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin: 20px 0 12px 5px; display: flex; align-items: center; gap: 8px; }
-        .cat-title::before { content: ''; display: block; width: 4px; height: 16px; background: #00ffcc; border-radius: 2px; }
+        /* Dynamic Grid System */
+        .cat-title { font-size: 18px; font-weight: 800; color: #ffffff; margin: 10px 0 15px 5px; display: flex; align-items: center; gap: 8px; }
+        .cat-title::before { content: ''; display: block; width: 4px; height: 18px; background: #00ffcc; border-radius: 2px; }
         
-        /* Channel Card Grid */
-        .grid-channels { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 12px; }
-        .card-channel { background: #121824; border: 1px solid #1e293b; border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; align-items: center; }
-        .card-channel:hover, .card-channel:active { border-color: #00ffcc; background: #1a2436; transform: scale(1.03); }
+        .grid-channels { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; }
+        .card-channel { background: #111726; border: 1px solid #1e293b; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .card-channel:hover, .card-channel:active { border-color: #00ffcc; background: #161f33; transform: scale(1.04); }
         
-        .logo-wrap { width: 60px; height: 60px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 7px; margin-bottom: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .logo-wrap { width: 64px; height: 64px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 8px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid #1e293b; }
         .logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
-        .card-channel p { font-size: 11px; font-weight: 600; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+        .card-channel p { font-size: 12px; font-weight: 700; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
         
-        .app-footer { text-align: center; padding: 30px 10px; color: #475569; font-size: 11px; margin-top: 40px; border-top: 1px solid #1e293b; }
+        .app-footer { text-align: center; padding: 30px 10px; color: #475569; font-size: 12px; margin-top: 50px; border-top: 1px solid #111726; font-weight: 500; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <div class='infolopi-header'>
-        <div class='infolopi-logo'>Info<span>Lopi</span></div>
-        <div style='display: flex; align-items: center; gap: 8px;'>
-            <span style='font-size: 11px; color: #00ffcc; font-weight: bold;'>2026 ACTIVE SERVERS</span>
-            <span class='live-pulse'></span>
-        </div>
+    <!-- Big Branding Section -->
+    <div class="brand-container">
+        <h1 class="main-title">Info<span>Lopi</span></h1>
+        <div class="sub-title">Premium IPTV Platform</div>
     </div>
 
-    <!-- Main Content -->
     <div class='app-container'>
+        
+        <!-- Live Video Screen -->
         <div class='main-player-box' id="video-container">
             <video data-shaka-player id="video" poster="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=800&auto=format&fit=crop" autoplay controls></video>
         </div>
 
-        <!-- ক্যাটাগরি ১: বাংলাদেশ ও ভারত লাইভ -->
-        <div class='cat-title'>লাইভ নিউজ ও বিনোদন (BD/IN)</div>
-        <div class='grid-channels'>
+        <!-- 5 Options / Categories Header Menu -->
+        <div class="category-menu">
+            <button class="cat-btn active" onclick="filterCategory('all', this)">সব চ্যানেল</button>
+            <button class="cat-btn" onclick="filterCategory('bangla', this)">বাংলাদেশি টিভি</button>
+            <button class="cat-btn" onclick="filterCategory('indian', this)">ইন্ডিয়ান টিভি</button>
+            <button class="cat-btn" onclick="filterCategory('sports', this)">স্পোর্টস টিভি</button>
+            <button class="cat-btn" onclick="filterCategory('islamic', this)">ইসলামিক টিভি</button>
+            <button class="cat-btn" onclick="filterCategory('kids', this)">কিডস টিভি</button>
+        </div>
+
+        <!-- Dynamic Content Header -->
+        <h2 class='cat-title' id="current-cat-label">সকল সচল লাইভ চ্যানেল</h2>
+        
+        <!-- Channel Display Grid -->
+        <div class='grid-channels' id="channel-grid-box">
             
-            <!-- সময় টিভি অফিসিয়াল আইফ্রেম ব্যাকআপ মোড -->
-            <div class='card-channel' onclick="loadLiveStream('https://m.somoynews.tv/live-tv', true)">
-                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/e/ea/Somoy_TV_logo.png' alt='Somoy TV'/></div>
-                <p>Somoy TV</p>
-            </div>
-            
-            <!-- ইন্ডিপেন্ডেন্ট টিভি সচল স্ট্রিমিং লিংক -->
-            <div class='card-channel' onclick="loadLiveStream('https://live.independent24.tv/independenttv/index.m3u8', false)">
+            <!-- বাংলাদেশি টিভি -->
+            <div class='card-channel' data-cat="bangla" onclick="loadLiveStream('https://live.independent24.tv/independenttv/index.m3u8', false)">
                 <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/en/3/36/Independent_Television_logo.png' alt='Independent'/></div>
                 <p>Independent</p>
             </div>
-
-            <!-- সংসদ টিভি বাংলাদেশ (১০০% সচল সরকারি সার্ভার) -->
-            <div class='card-channel' onclick="loadLiveStream('http://103.199.155.130:8080/hls/stvb.m3u8', false)">
+            <div class='card-channel' data-cat="bangla" onclick="loadLiveStream('https://m.somoynews.tv/live-tv', true)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/e/ea/Somoy_TV_logo.png' alt='Somoy TV'/></div>
+                <p>Somoy TV</p>
+            </div>
+            <div class='card-channel' data-cat="bangla" onclick="loadLiveStream('http://103.199.155.130:8080/hls/stvb.m3u8', false)">
                 <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/2/23/Play_icon_neon_green.png' alt='Sangsad TV'/></div>
                 <p>Sangsad TV</p>
             </div>
-        </div>
 
-        <!-- ক্যাটাগরি ২: গ্লোবাল স্পোর্টস ও প্রফেশনাল মুভিজ -->
-        <div class='cat-title'>স্পোর্টস এবং গ্লোবাল চ্যানেল</div>
-        <div class='grid-channels'>
-            
-            <!-- ক্লাউডফ্লেয়ার হাই-স্পিড স্পোর্টস নেটওয়ার্ক (সরাসরি সচল) -->
-            <div class='card-channel' onclick="loadLiveStream('https://customer-f3769ce73824f9f4.cloudflarestream.com/3ba67e8ad1e3cd60bc7e2d93e1ea6656/iframe?autoplay=true', true)">
-                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_P_icon.png' alt='Live Sports'/></div>
-                <p>Live Sports</p>
+            <!-- ইন্ডিয়ান টিভি -->
+            <div class='card-channel' data-cat="indian" onclick="loadLiveStream('https://ndtv24x7live.akamaized.net/hls/live/2004245/ndtv24x7/master.m3u8', false)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/c/c5/NDTV_logo.svg' alt='NDTV'/></div>
+                <p>NDTV India</p>
+            </div>
+            <div class='card-channel' data-cat="indian" onclick="loadLiveStream('https://luxurytv-luxurytv.amagi.tv/playlist.m3u8', false)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/4/46/Play_icon_neon_green.png' alt='Luxury TV'/></div>
+                <p>Luxury Lifestyle</p>
             </div>
 
-            <!-- রেডবুল আল্ট্রা এইচডি স্পোর্টস (১০০% সচল গ্লোবাল লিংক) -->
-            <div class='card-channel' onclick="loadLiveStream('https://rbmn-live.akamaized.net/hls/live/590964/BoB/master.m3u8', false)">
+            <!-- স্পোর্টস টিভি -->
+            <div class='card-channel' data-cat="sports" onclick="loadLiveStream('https://customer-f3769ce73824f9f4.cloudflarestream.com/3ba67e8ad1e3cd60bc7e2d93e1ea6656/iframe?autoplay=true', true)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_P_icon.png' alt='T Sports'/></div>
+                <p>Live Sports</p>
+            </div>
+            <div class='card-channel' data-cat="sports" onclick="loadLiveStream('https://rbmn-live.akamaized.net/hls/live/590964/BoB/master.m3u8', false)">
                 <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Red_Bull_TV_logo.svg/1200px-Red_Bull_TV_logo.svg.png' alt='RedBull'/></div>
                 <p>RedBull Live</p>
             </div>
 
-            <!-- ২৪/৭ হলিউড অ্যাকশন মুভিজ (শতভাগ সচল ক্লাউড সার্ভার) -->
-            <div class='card-channel' onclick="loadLiveStream('https://fcc39fe910b8.us-east-1.playback.live-video.net/api/video/v1/us-east-1.047021727827.channel.rNdfWv8rYqPj.m3u8', false)">
-                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/4/46/Play_icon_neon_green.png' alt='Action Movies'/></div>
-                <p>Action Movies</p>
+            <!-- ইসলামিক টিভি -->
+            <div class='card-channel' data-cat="islamic" onclick="loadLiveStream('https://win-makkah.b-cdn.net/live/makkah/playlist.m3u8', false)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/0/05/Makkah_Grand_Mosque_icon.png' alt='Makkah Live'/></div>
+                <p>Makkah Live</p>
             </div>
+            <div class='card-channel' data-cat="islamic" onclick="loadLiveStream('https://win-madinah.b-cdn.net/live/madinah/playlist.m3u8', false)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/3/30/Madinah_icon.png' alt='Madinah Live'/></div>
+                <p>Madinah Live</p>
+            </div>
+
+            <!-- কিডস টিভি -->
+            <div class='card-channel' data-cat="kids" onclick="loadLiveStream('https://pkka-ch-pokemon-1-ca.samsung.wurl.com/manifest/playlist.m3u8', false)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg' alt='Pokemon TV'/></div>
+                <p>Pokemon TV</p>
+            </div>
+            <div class='card-channel' data-cat="kids" onclick="loadLiveStream('https://filmon.ftv-cdn.net/v2/HLS/kids/master.m3u8', false)">
+                <div class='logo-wrap'><img src='https://upload.wikimedia.org/wikipedia/commons/4/46/Play_icon_neon_green.png' alt='Kids Toons'/></div>
+                <p>Kids Toons</p>
+            </div>
+
         </div>
     </div>
 
     <!-- Footer -->
     <div class='app-footer'>
-        <p>&#169; 2026 InfoLopi IPTV. Automatically Synchronized with Cloud Servers.</p>
+        <p>&#169; 2026 InfoLopi Premium Network. Powered Securely by GitHub Cloud.</p>
     </div>
 
+    <!-- Smart Shaka Engine Config Script -->
     <script>
         let playerInstance = null;
         const video = document.getElementById('video');
         const container = document.getElementById('video-container');
 
-        // Shaka Player-এর মাধ্যমে কোড ইনিশিয়ালাইজ করা (যা সব ব্রাউজারে স্মুথলি চলে)
         async function initPlayer() {
             shaka.polyfilled.installAll();
             if (shaka.Player.isBrowserSupported()) {
                 playerInstance = new shaka.Player(video);
-                const ui = new shaka.ui.Overlay(playerInstance, container, video);
+                new shaka.ui.Overlay(playerInstance, container, video);
                 
-                // ডিফল্ট প্রথম চ্যানেল হিসেবে ইন্ডিপেন্ডেন্ট টিভি লোড হবে
+                // শুরুতে অটোমেটিক মক্কা মদিনা বা ইন্ডিপেন্ডেন্ট টিভির লাইভ লোড হবে
                 loadLiveStream('https://live.independent24.tv/independenttv/index.m3u8', false);
-            } else {
-                console.error('Browser not supported!');
             }
         }
 
-        // চ্যানেল পরিবর্তনের মূল ফাংশন
         async function loadLiveStream(url, isIframeMode) {
-            // যদি চ্যানেলটি আইফ্রেম বেসড বা বিশেষ হয় (যেমন সময় টিভি বা স্পোর্টস)
             if (isIframeMode) {
-                container.innerHTML = `<iframe src="${url}" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:320px; border:none; border-radius:14px;"></iframe>`;
+                container.innerHTML = `<iframe src="${url}" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; height:340px; border:none; border-radius:16px;"></iframe>`;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
 
-            // সাধারণ ম m3u8 লিংকের জন্য হাই-স্পিড প্লেয়ার লোড হবে
             if (container.querySelector('iframe')) {
-                container.innerHTML = `<video data-shaka-player id="video" autoplay controls style="width:100%; height:100%; border-radius:14px;"></video>`;
+                container.innerHTML = `<video data-shaka-player id="video" autoplay controls style="width:100%; height:100%; border-radius:16px;"></video>`;
                 const newVideo = document.getElementById('video');
                 playerInstance = new shaka.Player(newVideo);
                 new shaka.ui.Overlay(playerInstance, container, newVideo);
-                try {
-                    await playerInstance.load(url);
-                    newVideo.play();
-                } catch (e) { console.log("Stream load fail, trying backup..."); }
+                try { await playerInstance.load(url); newVideo.play(); } catch (e) { }
             } else {
                 const currentVideo = document.getElementById('video');
-                try {
-                    await playerInstance.load(url);
-                    currentVideo.play();
-                } catch (e) { console.log("Stream load fail"); }
+                try { await playerInstance.load(url); currentVideo.play(); } catch (e) { }
             }
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ক্যাটাগরি অনুযায়ী ফিল্টার করার চমৎকার জাভাস্ক্রিপ্ট কোড
+        function filterCategory(category, button) {
+            // বাটন অ্যাক্টিভ ক্লাস চেঞ্জ
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // লেবেল চেঞ্জ
+            const labels = {
+                'all': 'সকল সচল লাইভ চ্যানেল',
+                'bangla': 'বাংলাদেশি লাইভ টিভি চ্যানেল',
+                'indian': 'ইন্ডিয়ান প্রিমিয়াম টিভি',
+                'sports': 'লাইভ স্পোর্টস ও নেটওয়ার্ক',
+                'islamic': 'ইসলামিক লাইভ টেলিভিশন',
+                'kids': 'বাচ্চাদের কার্টুন ও কিডস টিভি'
+            };
+            document.getElementById('current-cat-label').innerText = labels[category];
+
+            // চ্যানেল ফিল্টারিং
+            document.querySelectorAll('.card-channel').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-cat') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
 
         document.addEventListener('shaka-ui-loaded', initPlayer);
